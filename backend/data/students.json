@@ -1,0 +1,26 @@
+{
+  "students": [
+    {
+      "id": 3,
+      "name": "abc",
+      "email": "abc@gamil.com",
+      "age": 32,
+      "course": "computer science"
+    },
+    {
+      "id": 4,
+      "name": "Ragesh",
+      "email": "ragesh@gmail.com",
+      "age": 20,
+      "course": "IT"
+    },
+    {
+      "id": 5,
+      "name": "Test User",
+      "email": "test@example.com",
+      "age": 25,
+      "course": "Computer Science"
+    }
+  ],
+  "nextStudentId": 6
+}

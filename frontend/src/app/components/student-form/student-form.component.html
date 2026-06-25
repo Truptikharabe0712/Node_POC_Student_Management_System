@@ -1,0 +1,85 @@
+<div class="form-container">
+  <section class="form-header">
+    <h2>{{ isEditMode ? 'Edit Student' : 'Create New Student' }}</h2>
+    <p>Fill in the details below and save to update the directory.</p>
+  </section>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="success" class="success">{{ success }}</div>
+
+  <form (ngSubmit)="submitForm()" class="student-form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="student.name"
+        name="name"
+        required
+      />
+      <span *ngIf="validationErrors['name']" class="error-message">
+        {{ validationErrors['name'] }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        [(ngModel)]="student.email"
+        name="email"
+        required
+      />
+      <span *ngIf="validationErrors['email']" class="error-message">
+        {{ validationErrors['email'] }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input
+        id="age"
+        type="number"
+        [(ngModel)]="student.age"
+        name="age"
+        required
+      />
+      <span *ngIf="validationErrors['age']" class="error-message">
+        {{ validationErrors['age'] }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="course">Course</label>
+      <input
+        id="course"
+        type="text"
+        [(ngModel)]="student.course"
+        name="course"
+        required
+      />
+      <span *ngIf="validationErrors['course']" class="error-message">
+        {{ validationErrors['course'] }}
+      </span>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Saving...' : (isEditMode ? 'Update Student' : 'Create Student') }}
+      </button>
+      <button
+        type="button"
+        class="btn-cancel"
+        (click)="cancel()"
+        [disabled]="loading"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

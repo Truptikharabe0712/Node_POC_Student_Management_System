@@ -1,0 +1,117 @@
+<div class="student-list-container">
+  <section class="list-header">
+    <div>
+      <h2>Student Directory</h2>
+      <p>Browse, search, and manage student records.</p>
+    </div>
+    <button class="btn-create" (click)="createStudent()">
+      + Create New Student
+    </button>
+  </section>
+
+  <div class="search-bar">
+    <input-
+      type="text"
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="applySearch()"
+      placeholder="Search by name"
+      aria-label="Search students by name"
+    />
+    <button class="btn-search" (click)="applySearch()" [disabled]="loading">
+      Search
+    </button>
+    <button
+      class="btn-clear"
+      (click)="clearSearch()"
+      [disabled]="loading || (!searchTerm && !appliedSearchTerm)"
+    >
+      Clear
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading students...</div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="table-card" *ngIf="students.length > 0">
+    <table class="student-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Course</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.course }}</td>
+          <td>
+            <button
+              class="btn-edit"
+              (click)="editStudent(student.id)"
+            >
+              Edit
+            </button>
+            <button
+              class="btn-delete"
+              (click)="deleteStudent(student.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="students.length > 0" class="pagination-bar">
+    <div class="pagination-summary">
+      Showing page {{ currentPage }} of {{ totalPages }}
+      ({{ totalRecords }} total students)
+    </div>
+
+    <div class="pagination-actions">
+      <label for="page-size">Rows per page</label>
+      <select
+        id="page-size"
+        [value]="pageSize"
+        (change)="onPageSizeChange(+$any($event.target).value)"
+      >
+        <option [value]="5">5</option>
+        <option [value]="10">10</option>
+        <option [value]="20">20</option>
+      </select>
+
+      <button
+        class="btn-page"
+        [disabled]="!hasPreviousPage || loading"
+        (click)="goToPreviousPage()"
+      >
+        Previous
+      </button>
+      <button
+        class="btn-page"
+        [disabled]="!hasNextPage || loading"
+        (click)="goToNextPage()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="students.length === 0 && !loading" class="no-data">
+    <span *ngIf="appliedSearchTerm; else defaultNoData">
+      No students found for "{{ appliedSearchTerm }}".
+    </span>
+    <ng-template #defaultNoData>
+      No students found yet. <a routerLink="/create">Create the first student</a>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+@use "../../../styles/variables" as v;
+
+.form-container {
+  padding: 8px 6px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form-header {
+  margin-bottom: 14px;
+}
+
+.form-header h2 {
+  margin: 0;
+  font-family: v.$font-display;
+  color: v.$color-text-primary;
+}
+
+.form-header p {
+  margin: 6px 0 0;
+  color: v.$color-text-secondary;
+}
+
+.error {
+  padding: 15px;
+  background-color: v.$color-error-bg;
+  border: 1px solid v.$color-error-border;
+  color: v.$color-error-text;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.success {
+  padding: 15px;
+  background-color: v.$color-success-bg;
+  border: 1px solid v.$color-success-border;
+  color: v.$color-success-text;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 14px 30px rgba(16, 48, 45, 0.08);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: v.$color-text-primary;
+}
+
+.form-group input {
+  padding: 11px 12px;
+  border: 1px solid v.$color-border;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: v.$color-info;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+}
+
+.error-message {
+  color: v.$color-error-text;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-submit,
+.btn-cancel {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.btn-submit {
+  background-color: v.$color-success;
+  color: white;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, v.$color-success-hover 0%, #1f7523 100%);
+}
+
+.btn-submit:disabled {
+  background-color: v.$color-disabled;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background-color: v.$color-danger;
+  color: white;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background-color: v.$color-danger-hover;
+}
+
+.btn-cancel:disabled {
+  background-color: v.$color-disabled;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .student-form {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    flex-basis: 100%;
+  }
+}
