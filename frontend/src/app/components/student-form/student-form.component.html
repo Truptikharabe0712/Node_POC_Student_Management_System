@@ -1,7 +1,8 @@
 <div class="form-container">
   <section class="form-header">
     <h2>{{ isEditMode ? 'Edit Student' : 'Create New Student' }}</h2>
-    <p>Fill in the details below and save to update the directory.</p>
+    <p>Complete the form below to {{ isEditMode ? 'update' : 'add' }} a student record.</p>
+    <p class="form-note">All fields are required. Use a valid email address and student age.</p>
   </section>
 
   <div *ngIf="error" class="error">{{ error }}</div>
@@ -15,6 +16,7 @@
         type="text"
         [(ngModel)]="student.name"
         name="name"
+        placeholder="Enter student full name"
         required
       />
       <span *ngIf="validationErrors['name']" class="error-message">
@@ -29,6 +31,7 @@
         type="email"
         [(ngModel)]="student.email"
         name="email"
+        placeholder="name@example.com"
         required
       />
       <span *ngIf="validationErrors['email']" class="error-message">
@@ -36,48 +39,43 @@
       </span>
     </div>
 
-    <div class="form-group">
-      <label for="age">Age</label>
-      <input
-        id="age"
-        type="number"
-        [(ngModel)]="student.age"
-        name="age"
-        required
-      />
-      <span *ngIf="validationErrors['age']" class="error-message">
-        {{ validationErrors['age'] }}
-      </span>
-    </div>
+    <div class="form-group two-column">
+      <div>
+        <label for="age">Age</label>
+        <input
+          id="age"
+          type="number"
+          [(ngModel)]="student.age"
+          name="age"
+          placeholder="18"
+          required
+        />
+        <span *ngIf="validationErrors['age']" class="error-message">
+          {{ validationErrors['age'] }}
+        </span>
+      </div>
 
-    <div class="form-group">
-      <label for="course">Course</label>
-      <input
-        id="course"
-        type="text"
-        [(ngModel)]="student.course"
-        name="course"
-        required
-      />
-      <span *ngIf="validationErrors['course']" class="error-message">
-        {{ validationErrors['course'] }}
-      </span>
+      <div>
+        <label for="course">Course</label>
+        <input
+          id="course"
+          type="text"
+          [(ngModel)]="student.course"
+          name="course"
+          placeholder="Computer Science"
+          required
+        />
+        <span *ngIf="validationErrors['course']" class="error-message">
+          {{ validationErrors['course'] }}
+        </span>
+      </div>
     </div>
 
     <div class="form-actions">
-      <button
-        type="submit"
-        class="btn-submit"
-        [disabled]="loading"
-      >
+      <button type="submit" class="btn-submit" [disabled]="loading">
         {{ loading ? 'Saving...' : (isEditMode ? 'Update Student' : 'Create Student') }}
       </button>
-      <button
-        type="button"
-        class="btn-cancel"
-        (click)="cancel()"
-        [disabled]="loading"
-      >
+      <button type="button" class="btn-cancel" (click)="cancel()" [disabled]="loading">
         Cancel
       </button>
     </div>

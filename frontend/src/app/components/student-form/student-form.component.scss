@@ -1,53 +1,60 @@
 @use "../../../styles/variables" as v;
 
 .form-container {
-  padding: 8px 6px 20px;
-  max-width: 720px;
+  padding: 12px 8px 20px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
 .form-header {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .form-header h2 {
   margin: 0;
   font-family: v.$font-display;
   color: v.$color-text-primary;
+  font-size: 1.6rem;
 }
 
 .form-header p {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: v.$color-text-secondary;
 }
 
+.form-note {
+  margin: 8px 0 0;
+  color: v.$color-text-secondary;
+  font-size: 0.95rem;
+}
+
 .error {
-  padding: 15px;
+  padding: 16px;
   background-color: v.$color-error-bg;
   border: 1px solid v.$color-error-border;
   color: v.$color-error-text;
-  border-radius: 4px;
-  margin-bottom: 15px;
+  border-radius: 12px;
+  margin-bottom: 18px;
 }
 
 .success {
-  padding: 15px;
+  padding: 16px;
   background-color: v.$color-success-bg;
   border: 1px solid v.$color-success-border;
   color: v.$color-success-text;
-  border-radius: 4px;
-  margin-bottom: 15px;
+  border-radius: 12px;
+  margin-bottom: 18px;
 }
 
 .student-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   background: v.$color-surface;
   border: 1px solid v.$color-border;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 14px 30px rgba(16, 48, 45, 0.08);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 16px 34px rgba(16, 48, 45, 0.08);
 }
 
 .form-group {
@@ -55,18 +62,25 @@
   flex-direction: column;
 }
 
+.form-group.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
 .form-group label {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-weight: 700;
   color: v.$color-text-primary;
 }
 
 .form-group input {
-  padding: 11px 12px;
+  padding: 12px 14px;
   border: 1px solid v.$color-border;
-  border-radius: 10px;
-  font-size: 14px;
+  border-radius: 14px;
+  font-size: 15px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #fbfdfc;
 }
 
 .form-group input:focus {
@@ -75,28 +89,33 @@
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
 }
 
+.form-group input::placeholder {
+  color: #7d9792;
+}
+
 .error-message {
   color: v.$color-error-text;
   font-size: 12px;
-  margin-top: 3px;
+  margin-top: 6px;
 }
 
 .form-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   margin-top: 10px;
   flex-wrap: wrap;
 }
 
 .btn-submit,
 .btn-cancel {
-  padding: 11px 18px;
+  padding: 12px 18px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   flex: 1;
+  min-width: 140px;
 }
 
 .btn-submit {
@@ -114,12 +133,13 @@
 }
 
 .btn-cancel {
-  background-color: v.$color-danger;
-  color: white;
+  background-color: white;
+  color: v.$color-text-primary;
+  border: 1px solid v.$color-border;
 }
 
 .btn-cancel:hover:not(:disabled) {
-  background-color: v.$color-danger-hover;
+  background-color: v.$color-table-row-hover;
 }
 
 .btn-cancel:disabled {
@@ -127,10 +147,14 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .student-form {
-    padding: 14px;
-    border-radius: 12px;
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .form-group.two-column {
+    grid-template-columns: 1fr;
   }
 
   .btn-submit,

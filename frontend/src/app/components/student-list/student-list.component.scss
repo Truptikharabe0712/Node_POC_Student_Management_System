@@ -1,39 +1,70 @@
 @use "../../../styles/variables" as v;
 
 .student-list-container {
-  padding: 8px 6px 20px;
+  padding: 14px 8px 24px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
 }
 
 .list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  padding: 18px 20px;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(16, 48, 45, 0.06);
+}
+
+.header-copy {
+  min-width: 0;
+}
+
+.header-title-wrap {
+  display: flex;
+  align-items: center;
   gap: 12px;
-  margin-bottom: 14px;
   flex-wrap: wrap;
 }
 
 .list-header h2 {
   margin: 0;
   font-family: v.$font-display;
+  font-size: 1.38rem;
   color: v.$color-text-primary;
 }
 
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: rgba(13, 148, 136, 0.12);
+  color: v.$color-info;
+  font-weight: 700;
+  border-radius: 999px;
+  font-size: 0.92rem;
+}
+
 .list-header p {
-  margin: 4px 0 0;
+  margin: 8px 0 0;
   color: v.$color-text-secondary;
 }
 
 .btn-create {
-  padding: 10px 16px;
+  padding: 12px 18px;
   background: linear-gradient(135deg, v.$color-success 0%, #1f8d25 100%);
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 8px 18px rgba(42, 132, 46, 0.25);
+  box-shadow: 0 12px 24px rgba(42, 132, 46, 0.2);
 }
 
 .btn-create:hover {
@@ -43,30 +74,38 @@
 
 .search-bar {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
   background: v.$color-surface;
   border: 1px solid v.$color-border;
-  border-radius: 14px;
-  padding: 10px;
-  box-shadow: 0 8px 20px rgba(16, 48, 45, 0.06);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 12px 26px rgba(16, 48, 45, 0.05);
 }
 
 .search-bar input {
   min-width: 240px;
   flex: 1;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border: 1px solid v.$color-border;
-  border-radius: 10px;
+  border-radius: 12px;
+  background: #fbfdfc;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: v.$color-info;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
 }
 
 .btn-search,
 .btn-clear {
-  padding: 9px 13px;
+  padding: 11px 16px;
   border: 1px solid v.$color-border;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
 }
@@ -82,7 +121,7 @@
 }
 
 .btn-clear {
-  background-color: white;
+  background-color: #ffffff;
   color: v.$color-text-primary;
 }
 
@@ -92,7 +131,7 @@
 
 .btn-search:disabled,
 .btn-clear:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
@@ -103,25 +142,26 @@
 }
 
 .error {
-  padding: 15px;
+  padding: 16px;
   background-color: v.$color-error-bg;
   border: 1px solid v.$color-error-border;
   color: v.$color-error-text;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  margin-bottom: 18px;
 }
 
 .table-card {
-  border-radius: 16px;
+  border-radius: 20px;
   border: 1px solid v.$color-border;
   overflow: hidden;
   background: v.$color-surface;
-  box-shadow: 0 14px 30px rgba(16, 48, 45, 0.08);
+  box-shadow: 0 16px 36px rgba(16, 48, 45, 0.08);
 }
 
 .student-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 720px;
 }
 
 .student-table thead {
@@ -130,7 +170,7 @@
 
 .student-table th,
 .student-table td {
-  padding: 12px;
+  padding: 14px 16px;
   text-align: left;
   border-bottom: 1px solid v.$color-border;
 }
@@ -143,18 +183,31 @@
   text-transform: uppercase;
 }
 
-.student-table tr:hover {
+.student-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.student-table tbody tr:hover {
   background-color: v.$color-table-row-hover;
+}
+
+.student-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.action-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .btn-edit,
 .btn-delete {
-  padding: 7px 11px;
+  padding: 9px 14px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 12px;
-  margin-right: 5px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -178,17 +231,18 @@
 
 .no-data {
   margin-top: 20px;
-  padding: 42px 18px;
+  padding: 30px 22px;
   text-align: center;
   color: v.$color-text-secondary;
   background: v.$color-surface;
   border: 1px dashed v.$color-border;
-  border-radius: 14px;
+  border-radius: 16px;
 }
 
 .no-data a {
   color: v.$color-info;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .no-data a:hover {
@@ -196,7 +250,7 @@
 }
 
 .pagination-bar {
-  margin-top: 14px;
+  margin-top: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -204,8 +258,66 @@
   flex-wrap: wrap;
   background: v.$color-surface;
   border: 1px solid v.$color-border;
-  border-radius: 12px;
-  padding: 10px 12px;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.pagination-summary {
+  color: v.$color-text-secondary;
+  font-size: 14px;
+}
+
+.pagination-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-actions label {
+  color: v.$color-text-secondary;
+  font-size: 14px;
+}
+
+.pagination-actions select {
+  border: 1px solid v.$color-border;
+  border-radius: 10px;
+  padding: 8px 10px;
+  background-color: white;
+}
+
+.btn-page {
+  padding: 8px 14px;
+  border: 1px solid v.$color-border;
+  border-radius: 10px;
+  background-color: white;
+  color: v.$color-text-primary;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-page:hover:not(:disabled) {
+  background-color: v.$color-table-row-hover;
+}
+
+.btn-page:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 760px) {
+  .student-table {
+    min-width: 0;
+    font-size: 13px;
+  }
+
+  .student-table th,
+  .student-table td {
+    padding: 10px 12px;
+  }
+
+  .search-bar input {
+    min-width: 100%;
+  }
 }
 
 .pagination-summary {

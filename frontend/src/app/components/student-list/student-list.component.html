@@ -1,8 +1,11 @@
 <div class="student-list-container">
   <section class="list-header">
-    <div>
-      <h2>Student Directory</h2>
-      <p>Browse, search, and manage student records.</p>
+    <div class="header-copy">
+      <div class="header-title-wrap">
+        <h2>Student Directory</h2>
+        <span class="count-badge">{{ totalRecords }} students</span>
+      </div>
+      <p>Browse, search, and manage student records with ease.</p>
     </div>
     <button class="btn-create" (click)="createStudent()">
       + Create New Student
@@ -10,12 +13,12 @@
   </section>
 
   <div class="search-bar">
-    <input-
+    <input
       type="text"
       [(ngModel)]="searchTerm"
       (keyup.enter)="applySearch()"
-      placeholder="Search by name"
-      aria-label="Search students by name"
+      placeholder="Search by name or email"
+      aria-label="Search students by name or email"
     />
     <button class="btn-search" (click)="applySearch()" [disabled]="loading">
       Search
@@ -52,17 +55,11 @@
           <td>{{ student.email }}</td>
           <td>{{ student.age }}</td>
           <td>{{ student.course }}</td>
-          <td>
-            <button
-              class="btn-edit"
-              (click)="editStudent(student.id)"
-            >
+          <td class="action-cell">
+            <button class="btn-edit" (click)="editStudent(student.id)">
               Edit
             </button>
-            <button
-              class="btn-delete"
-              (click)="deleteStudent(student.id)"
-            >
+            <button class="btn-delete" (click)="deleteStudent(student.id)">
               Delete
             </button>
           </td>

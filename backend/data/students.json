@@ -20,7 +20,14 @@
       "email": "test@example.com",
       "age": 25,
       "course": "Computer Science"
+    },
+    {
+      "id": 6,
+      "name": "Test",
+      "email": "test@gmail.com",
+      "age": 30,
+      "course": "IT"
     }
   ],
-  "nextStudentId": 6
+  "nextStudentId": 7
 }
