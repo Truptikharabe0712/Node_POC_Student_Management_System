@@ -1,3 +1,8 @@
+/**
+ * PostgreSQL Repository Implementation
+ * Persists student records in a Postgres table and exposes the same CRUD API
+ * as the JSON repository so storage mode can be changed without affecting services.
+ */
 import { Pool } from "pg";
 
 let pool;
@@ -8,6 +13,10 @@ function createDuplicateEmailError() {
   return error;
 }
 
+/**
+ * Build the Postgres connection configuration from environment variables.
+ * Supports DATABASE_URL or explicit host/user/password settings.
+ */
 function getPoolConfig() {
   if (process.env.DATABASE_URL) {
     return {
@@ -36,6 +45,9 @@ function getPoolConfig() {
   );
 }
 
+/**
+ * Lazily initialize and return the Postgres connection pool.
+ */
 function getPool() {
   if (!pool) {
     pool = new Pool(getPoolConfig());
@@ -44,6 +56,9 @@ function getPool() {
   return pool;
 }
 
+/**
+ * Ensure the students table exists before handling CRUD requests.
+ */
 async function initialize() {
   await getPool().query(`
     CREATE TABLE IF NOT EXISTS students (
@@ -56,6 +71,10 @@ async function initialize() {
   `);
 }
 
+/**
+ * Create a new student row in Postgres.
+ * Email uniqueness is enforced via a pre-check to return a user-friendly conflict error.
+ */
 async function createStudent(studentData) {
   const normalizedEmail = studentData.email.trim().toLowerCase();
 
@@ -84,6 +103,9 @@ async function createStudent(studentData) {
   return result.rows[0];
 }
 
+/**
+ * Return a paginated list of students with optional name search.
+ */
 async function getAllStudents(filters) {
   const searchName = typeof filters.name === "string" ? filters.name.trim() : "";
   const page = Number(filters.page) > 0 ? Number(filters.page) : 1;
@@ -126,6 +148,9 @@ async function getAllStudents(filters) {
   };
 }
 
+/**
+ * Retrieve a single student row by ID.
+ */
 async function getStudentById(studentId) {
   const query = `
     SELECT id, name, email, age, course
@@ -137,6 +162,9 @@ async function getStudentById(studentId) {
   return result.rows[0] || null;
 }
 
+/**
+ * Update an existing student row.
+ */
 async function updateStudent(studentId, studentData) {
   const normalizedEmail = studentData.email.trim().toLowerCase();
 
@@ -168,6 +196,9 @@ async function updateStudent(studentId, studentData) {
   return result.rows[0] || null;
 }
 
+/**
+ * Delete a student row by ID and return the deleted record.
+ */
 async function deleteStudent(studentId) {
   const query = `
     DELETE FROM students

@@ -39,36 +39,34 @@
       </span>
     </div>
 
-    <div class="form-group two-column">
-      <div>
-        <label for="age">Age</label>
-        <input
-          id="age"
-          type="number"
-          [(ngModel)]="student.age"
-          name="age"
-          placeholder="18"
-          required
-        />
-        <span *ngIf="validationErrors['age']" class="error-message">
-          {{ validationErrors['age'] }}
-        </span>
-      </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input
+        id="age"
+        type="number"
+        [(ngModel)]="student.age"
+        name="age"
+        placeholder="18"
+        required
+      />
+      <span *ngIf="validationErrors['age']" class="error-message">
+        {{ validationErrors['age'] }}
+      </span>
+    </div>
 
-      <div>
-        <label for="course">Course</label>
-        <input
-          id="course"
-          type="text"
-          [(ngModel)]="student.course"
-          name="course"
-          placeholder="Computer Science"
-          required
-        />
-        <span *ngIf="validationErrors['course']" class="error-message">
-          {{ validationErrors['course'] }}
-        </span>
-      </div>
+    <div class="form-group">
+      <label for="course">Course</label>
+      <input
+        id="course"
+        type="text"
+        [(ngModel)]="student.course"
+        name="course"
+        placeholder="Computer Science"
+        required
+      />
+      <span *ngIf="validationErrors['course']" class="error-message">
+        {{ validationErrors['course'] }}
+      </span>
     </div>
 
     <div class="form-actions">

@@ -120,6 +120,7 @@ From `frontend/`:
 
 ```bash
 npm start
+ng serve
 ```
 
 Open the application at `http://localhost:4200/`.

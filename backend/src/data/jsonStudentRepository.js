@@ -1,3 +1,8 @@
+/**
+ * JSON Repository Implementation
+ * Uses in-memory student state backed by a JSON file on disk.
+ * Supports create, read, update, delete, filtering, and pagination.
+ */
 import {
   getStudents,
   getNextStudentId,
@@ -19,10 +24,16 @@ function isEmailTaken(email, excludeStudentId) {
   );
 }
 
+/**
+ * Load student data from JSON file into memory before handling requests.
+ */
 async function initialize() {
   await loadStudents();
 }
 
+/**
+ * Create a new student and persist the updated list to JSON file.
+ */
 async function createStudent(studentData) {
   if (isEmailTaken(studentData.email)) {
     throw createDuplicateEmailError();
@@ -42,6 +53,9 @@ async function createStudent(studentData) {
   return student;
 }
 
+/**
+ * Return a paginated list of students and total count from memory.
+ */
 async function getAllStudents(filters) {
   const students = getStudents();
   const searchName = typeof filters.name === "string" ? filters.name.trim().toLowerCase() : "";
@@ -65,11 +79,17 @@ async function getAllStudents(filters) {
   };
 }
 
+/**
+ * Retrieve a student record by its numeric ID.
+ */
 async function getStudentById(studentId) {
   const students = getStudents();
   return students.find((student) => student.id === studentId) || null;
 }
 
+/**
+ * Update an existing student and persist changes.
+ */
 async function updateStudent(studentId, studentData) {
   const students = getStudents();
   const studentIndex = students.findIndex((student) => student.id === studentId);
@@ -95,6 +115,9 @@ async function updateStudent(studentId, studentData) {
   return updatedStudent;
 }
 
+/**
+ * Delete a student from memory and persist the updated list.
+ */
 async function deleteStudent(studentId) {
   const students = getStudents();
   const studentIndex = students.findIndex((student) => student.id === studentId);
