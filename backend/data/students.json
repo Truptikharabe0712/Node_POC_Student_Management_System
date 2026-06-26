@@ -27,7 +27,14 @@
       "email": "test@gmail.com",
       "age": 30,
       "course": "IT"
+    },
+    {
+      "id": 7,
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "age": 32,
+      "course": "Mechanical"
     }
   ],
-  "nextStudentId": 7
+  "nextStudentId": 8
 }
